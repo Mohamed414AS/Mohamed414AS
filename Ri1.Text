@@ -1,0 +1,67 @@
+Tname.Clear()
+
+Tno.Clear()
+
+conn.Open()
+
+db1 = New OleDbDataAdapter("select max(deptno) from 
+
+dept", conn)
+
+db1.Fill(dataset1, "dept1")
+Tno.Text = 
+Val(dataset1.Tables("dept1").Rows(0).Item(0).ToString) + 10
+Tno.ReadOnly = True
+ dataset1.Tables("dept1").Clear()
+زر الحفظ
+conn.Open()
+db2.Connection = conn
+db2.CommandText = ("INSERT INTO 
+dept(deptno,dname,loc) values (" & Tno.Text & ",'" & 
+Tname.Text & "','" & tloc.Text & "')")
+db2.ExecuteNonQuery()
+db1 = New OleDbDataAdapter("select * from dept order 
+by deptno", conn)
+dataset1.Tables("dept").Clear()
+db1.Fill(dataset1, "dept")
+conn.Close()
+ 
+زر الحذف
+conn.Open()
+db2.Connection = conn
+db2.CommandText = ("delete from dept where deptno= "
+& Val(Tno.Text))
+db2.ExecuteNonQuery()
+db1 = New OleDbDataAdapter("select * from dept order 
+by deptno", conn)
+dataset1.Tables("dept").Clear()
+db1.Fill(dataset1, "dept")
+conn.Close()
+اول سجل
+Me.BindingContext(dataset1, "dept").Position = 0
+اخر سجل
+Me.BindingContext(dataset1, "dept").Position = 
+Me.BindingContext(dataset1, "dept").Count - 1
+
+Imports System.IO 'نؼرف المكتبت
+() ػالمت مغ نص نىع من متغير نؼرف' String As() s Dim 
+االقراص جميغ يساوي المتغير نجؼل' ()GetLogicalDrives.Directory = s 
+الكمبيىتر جهاز قي المىجىدة
+ListBox1.Items.AddRange(s) 'نظيف االقراص الي
+عملية اضافة المجلدات من االقراص الموجودة في الست 0
+Dim t As Integer
+ Dim d() As String
+ 
+ d = Directory.GetDirectories(ListBox1.Items(1))
+ 
+ ListBox2.Items.AddRange(d)
+التعامل مع النصوص
+Imports System.IO 'نؼرف المكتبت
+قراء ملف بي الكامل
+ Dim s As New StreamReader("d:\data.txt")
+ Dim Y As String
+ Y = s.ReadToEnd
+ TextBox2.Text = Y
+ s.Close()
+قراء ملف سطر سطر
+ Dim s As New StreamReader("d:\data.txt")
