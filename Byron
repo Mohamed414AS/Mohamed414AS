@@ -1,0 +1,21 @@
+import requests
+y = "Method 1"
+print(y)
+y = requests.get("https://bormaa.com/")
+print(y)
+y = "Method 2"
+print(y)
+y = requests.codes["temporary_redirect"]
+print(y)
+y = "Method 3"
+print(y)
+y = requests.codes.ok
+print(y)
+y = "Method 4"
+print(y)
+y = requests.codes.teapot
+print(y)
+y = "Method 5"
+print(y)
+y = requests.codes["o/"]
+print(y)
